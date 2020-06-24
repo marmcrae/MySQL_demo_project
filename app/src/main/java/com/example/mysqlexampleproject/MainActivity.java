@@ -21,7 +21,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ItemAdapter itemAdapter;
-    Context thisContext;
+    MainActivity context;
     ListView myListView;
     TextView progressTextView;
     Map<String, Double> fruitsMap = new LinkedHashMap<String, Double>();
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Resources res = getResources();
         myListView = (ListView) findViewById(R.id.myListView);
         progressTextView = (TextView) findViewById(R.id.progressTextView);
-        thisContext = this;
+        context = this;
 
         progressTextView.setText("");
 
@@ -51,14 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
     private class GetData extends AsyncTask<String, String, String> {
         String msg = "";
-        //JDBC driver name and database URL
+
 
         static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        //Example: 10.20.30
 
         static final String DB_URL = "jdbc:mysql://" +
                 DbStrings.DATABASE_URL + "/" +
-                DbStrings.DATABASE_NAME;
+                DbStrings.DATABASE_NAME +"?autoReconnect=true&useSSL=false";
 
         @Override
         protected void onPreExecute() {
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 conn = DriverManager.getConnection(DB_URL, DbStrings.USERNAME, DbStrings.PASSWORD);
 
                 stmt = conn.createStatement();
-                String sql = "SELECT * FROM fruits";
+                String sql = "SELECT * FROM fruits_table";
                 ResultSet rs = stmt.executeQuery(sql);
 
                 while (rs.next()) {
@@ -131,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
             progressTextView.setText(this.msg);
             if (fruitsMap.size() > 0) {
 
-                itemAdapter = new ItemAdapter(thisContext, fruitsMap);
+                itemAdapter = new ItemAdapter(context, fruitsMap);
                 myListView.setAdapter(itemAdapter);
 
                 }

@@ -20,7 +20,7 @@ public class ItemAdapter extends BaseAdapter {
     List<String> names;
     List<Double> prices;
 
-    public ItemAdapter(Context c, Map m) {
+    public ItemAdapter(MainActivity c, Map m) {
 
         mInflator = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         map = m;

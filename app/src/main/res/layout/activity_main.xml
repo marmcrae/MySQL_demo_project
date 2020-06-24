@@ -20,17 +20,19 @@
 
     <TextView
         android:id="@+id/progressTextView"
-        android:layout_width="66dp"
-        android:layout_height="14dp"
+        android:layout_width="327dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
         android:text="Progress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/getDataButton"
+        app:layout_constraintHorizontal_bias="0.596"
+        app:layout_constraintStart_toStartOf="@+id/getDataButton"
         app:layout_constraintTop_toBottomOf="@+id/getDataButton" />
 
     <ListView
         android:id="@+id/myListView"
-        android:layout_width="408dp"
-        android:layout_height="535dp"
+        android:layout_width="378dp"
+        android:layout_height="492dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
